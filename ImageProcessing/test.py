@@ -1,7 +1,7 @@
 import turtle
 from PIL import Image
 t = turtle.Turtle()
-img = Image.open("size200.jpg")
+img = Image.open("ImageProcessing/size200.jpg")
 
 
 pixels = list(img.getdata())
