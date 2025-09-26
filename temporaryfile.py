@@ -1,40 +1,31 @@
-class Person:
-    def __init__(self, first, last, age = 20):
-        self._first = first
-        self.__last = last
-        self.__age = age
+class Flyer:
+    def __init__(self, wingspan):
+        self.wingspan = wingspan
+    
+    def move(self):
+        print("flying through the sky")
+
+class Swimmer:
+    def __init__(self, swim_speed):
+        self.swim_speed = swim_speed
+
+    def move(self):
+        print("swimming through the water")
+
+
+class Duck(Swimmer, Flyer):
+    def __init__(self, wingspan, swim_speed, name):
+        Swimmer.__init__(self, swim_speed)
+        Flyer.__init__(self, wingspan)
+
+        self.name = name
 
     def __str__(self):
-        return f"first name: {self._first}, last name: {self.__last}, age: {self.__age}"
-    
+        return f"Swim speed:{self.swim_speed}  Wingspan: {self.wingspan}  Name: {self.name}"
 
-    @property
-    def last_name(self):
-        return self.__last
-    
-    @last_name.setter
-    def last_name(self, name):
-        if isinstance(name, str):
-            self.__last = name
-        else:
-            raise TypeError("Name has to be string")
-        
+    def sound(self):
+        print("Quack")
 
-    @property
-    def age(self):
-        return self.__age
-    
-    @age.setter
-    def age(self, new):
-        if isinstance(new, int) and new >= 0:
-            self.__age = new
-        else:
-            raise TypeError("Age has to be int >= 0")
+duck = Duck(40, 5, "donald")
 
-    
-p1 = Person("jimmy", "green")
-p1.last_name = "Black"
-print(p1.last_name)
-
-p1.age = 21
-print(p1.age)
+print(duck)
