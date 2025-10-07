@@ -36,9 +36,19 @@ class Sundae(IceCream):
     def __str__(self):
         return f"Name: {self.name}, Scoop count: {self.scoop_count}, Topping Name: {self.topping_name}, Topping Price: {self.topping_price}"
     
+class Order:
+    def __init__(self):
+        self._order = []
+
+    def add(self, items = ()):
+        for item in items:
+            self._order.append(item)
+
+    def __len__(self):
+        return len(self._order)   
+
+    def print_names(self):
+        for item in self._order:
+            print(item.name) 
 
 
-
-
-sundae = Sundae("chocolate fudge", 2, 3,topping_name = "Fudge", topping_price= 1 )
-print(sundae)

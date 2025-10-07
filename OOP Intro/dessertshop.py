@@ -1,19 +1,5 @@
-from dessert import IceCream, Candy, Cookie, Sundae
+from dessert import DessertItem, IceCream, Candy, Cookie, Sundae, Order
 
-class Order:
-    def __init__(self):
-        self._order = []
-
-    def add(self, items = ()):
-        for item in items:
-            self._order.append(item)
-
-    def __len__(self):
-        return len(self._order)   
-
-    def print_names(self):
-        for item in self._order:
-            print(item.name) 
 
 
 def main():
