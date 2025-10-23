@@ -66,9 +66,8 @@ class Order:
     def __init__(self):
         self.order = []
 
-    def add(self, items = ()):
-        for item in items:
-            self.order.append(item)
+    def add(self, item):
+        self.order.append(item)
 
     def __len__(self):
         return len(self.order)   
