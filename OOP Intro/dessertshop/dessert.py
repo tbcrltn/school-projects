@@ -22,6 +22,10 @@ class Candy(DessertItem):
 
     def calculate_cost(self):
         return round(self.candy_weight * self.price_per_pound, 2)
+    
+    def __str__(self):
+        
+        return f"{self.name} - candy\n-     {self.candy_weight} lbs. @ ${self.price_per_pound}/lb,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
 
     
 class Cookie(DessertItem):
@@ -32,6 +36,9 @@ class Cookie(DessertItem):
     
     def calculate_cost(self):
         return round(self.cookie_ammount * (self.price_per_dozen/12),2)
+
+    def __str__(self):
+        return f"{self.name} - cookies\n-     {self.cookie_ammount} cookies. @ ${self.price_per_dozen}/dozen,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
 
 
 
@@ -44,6 +51,10 @@ class IceCream(DessertItem):
     
     def calculate_cost(self):
         return round(self.scoop_count * self.price_per_scoop, 2)
+    
+    def __str__(self):
+        return f"{self.name} - ice cream\n-     {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
+
     
 
 
@@ -58,7 +69,7 @@ class Sundae(IceCream):
 
 
     def __str__(self):
-        return f"Name: {self.name}, Scoop count: {self.scoop_count}, Topping Name: {self.topping_name}, Topping Price: {self.topping_price}"
+        return f"{self.name} - sundae\n-     {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop\n-     {self.topping_name} topping @ ${self.topping_price},${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
     
 
 
@@ -66,11 +77,30 @@ class Order:
     def __init__(self):
         self.order = []
 
-    def add(self, item):
-        self.order.append(item)
+    def __str__(self):
+        result = ";".join(str(item) for item in self.order)
+        return result
 
     def __len__(self):
-        return len(self.order)   
+        return len(self.order)  
+    
+    def to_list(self):
+        data = []
+        big_list = str(self).split(";")
+        for item in big_list:
+            small_list = item.split(",")
+            data.append(small_list)
+        
+        data.append(["----------------------------", "------", "-----------"])
+        data.append(["Order Subtotal: ", self.order_tax(), self.order_cost()])
+        data.append(["Order Total: ", "-----", round(self.order_tax()+self.order_cost(),2)])
+        data.append(["Items in Order: ", "-----", len(self.order)])
+        return data
+
+
+ 
+    def add(self, item):
+        self.order.append(item)
 
     def print_names(self):
         for item in self.order:
