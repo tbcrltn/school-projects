@@ -1,6 +1,6 @@
 import pytest
 from dessert import IceCream
-import dessertshop
+
 
 def test_icecream():
     icecream = IceCream("name")
@@ -8,6 +8,7 @@ def test_icecream():
     assert icecream.price_per_scoop == pytest.approx(0.0, abs=1e-3)
     assert icecream.scoop_count == 0
     assert round(icecream.calculate_cost(), 2) == 0.0
+    assert icecream.packaging == "Bowl"
 
     icecream.name = "diffname"
     icecream.price_per_scoop = 5.0
@@ -16,5 +17,3 @@ def test_icecream():
     assert icecream.price_per_scoop == pytest.approx(5.0, abs=1e-3)
     assert icecream.scoop_count == 5
     assert round(icecream.calculate_cost(), 2) == 25.0
-
-dessertshop.main()

@@ -1,6 +1,5 @@
 import pytest
 from dessert import Sundae
-import dessertshop
 
 def test_sundae():
     sundae = Sundae("name", 0, 0)
@@ -10,6 +9,7 @@ def test_sundae():
     assert sundae.topping_name == ""
     assert sundae.topping_price == pytest.approx(0.0, abs=1e-3)
     assert round(sundae.calculate_cost()) == 0.0
+    assert sundae.packaging == "Boat"
 
     sundae.name = "diffname"
     sundae.price_per_scoop = 5
@@ -23,4 +23,3 @@ def test_sundae():
     assert sundae.topping_price == pytest.approx(1.5, abs=1e-3)
     assert round(sundae.calculate_cost(), 2) == 26.5
 
-dessertshop.main()

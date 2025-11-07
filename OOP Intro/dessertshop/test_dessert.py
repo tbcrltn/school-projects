@@ -1,6 +1,6 @@
 import pytest
 from dessert import DessertItem
-import dessertshop
+
 
 #doesnt work because it is an abstract class
 def test_dessert():
@@ -16,7 +16,7 @@ def test_dessert():
     
 
 
-dessertshop.main()
+
 
     
 

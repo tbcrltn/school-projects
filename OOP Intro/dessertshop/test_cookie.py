@@ -1,6 +1,6 @@
 import pytest
 from dessert import Cookie
-import dessertshop
+
 
 
 def test_cookie():
@@ -8,6 +8,7 @@ def test_cookie():
     assert cookie.name == "name"
     assert cookie.cookie_ammount == 0
     assert cookie.price_per_dozen == 0
+    assert cookie.packaging == "Box"
     assert round(cookie.calculate_cost(), 2) == 0.0
 
     cookie.name = "diffname"
@@ -18,4 +19,3 @@ def test_cookie():
     assert cookie.price_per_dozen == 12
     assert round(cookie.calculate_cost(), 2) == 5.0
 
-dessertshop.main()

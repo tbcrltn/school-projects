@@ -15,61 +15,65 @@ class DessertItem(ABC):
 
 
 class Candy(DessertItem):
-    def __init__(self, name, candy_weight = 0.0, price_per_pound = 0.0):
+    def __init__(self, name, candy_weight = 0.0, price_per_pound = 0.0, packaging = "Bag"):
         DessertItem.__init__(self, name)
         self.candy_weight = candy_weight
         self.price_per_pound = price_per_pound
+        self.packaging = packaging
 
     def calculate_cost(self):
         return round(self.candy_weight * self.price_per_pound, 2)
     
     def __str__(self):
         
-        return f"{self.name} - candy\n-     {self.candy_weight} lbs. @ ${self.price_per_pound}/lb,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
+        return f"{self.name} - ({self.packaging})\n-     {self.candy_weight} lbs. @ ${self.price_per_pound}/lb,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
 
     
 class Cookie(DessertItem):
-    def __init__(self, name, cookie_ammount, price_per_dozen):
+    def __init__(self, name, cookie_ammount, price_per_dozen, packaging = "Box"):
         DessertItem.__init__(self, name)
         self.cookie_ammount = cookie_ammount
         self.price_per_dozen = price_per_dozen
+        self.packaging = packaging
     
     def calculate_cost(self):
         return round(self.cookie_ammount * (self.price_per_dozen/12),2)
 
     def __str__(self):
-        return f"{self.name} - cookies\n-     {self.cookie_ammount} cookies. @ ${self.price_per_dozen}/dozen,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
+        return f"{self.name} - ({self.packaging})\n-     {self.cookie_ammount} cookies. @ ${self.price_per_dozen}/dozen,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
 
 
 
 
 class IceCream(DessertItem):
-    def __init__(self, name, scoop_count = 0, price_per_scoop = 0):
+    def __init__(self, name, scoop_count = 0, price_per_scoop = 0, packaging = "Bowl"):
         DessertItem.__init__(self, name)
         self.scoop_count = scoop_count
         self.price_per_scoop = price_per_scoop
+        self.packaging = packaging
     
     def calculate_cost(self):
         return round(self.scoop_count * self.price_per_scoop, 2)
     
     def __str__(self):
-        return f"{self.name} - ice cream\n-     {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
+        return f"{self.name} - ({self.packaging})\n-     {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop,${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
 
     
 
 
 class Sundae(IceCream):
-    def __init__(self, name, scoop_count, price_per_scoop, topping_name = "", topping_price = 0):
+    def __init__(self, name, scoop_count, price_per_scoop, topping_name = "", topping_price = 0, packaging = "Boat"):
         IceCream.__init__(self, name, scoop_count=scoop_count, price_per_scoop=price_per_scoop)
         self.topping_name = topping_name
         self.topping_price = topping_price
+        self.packaging = packaging
 
     def calculate_cost(self):
         return round((self.scoop_count * self.price_per_scoop)+ self.topping_price, 2)
 
 
     def __str__(self):
-        return f"{self.name} - sundae\n-     {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop\n-     {self.topping_name} topping @ ${self.topping_price},${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
+        return f"{self.name} - ({self.packaging})\n-     {self.scoop_count} scoops. @ ${self.price_per_scoop}/scoop\n-     {self.topping_name} topping @ ${self.topping_price},${self.calculate_cost()},[Tax: ${self.calculate_tax()}]"
     
 
 
